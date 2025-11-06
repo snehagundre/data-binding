@@ -31,7 +31,7 @@ export class TodocrudeventbindComponent implements OnInit {
   ];
 
   onToDoAdd(todoitemControl: HTMLInputElement) {
-    if(this.todoarr.length>=0){
+    if(todoitemControl.value.length > 0){
       let todoObj = {
       toitem: todoitemControl.value,
       todoId: this.Uuid()
