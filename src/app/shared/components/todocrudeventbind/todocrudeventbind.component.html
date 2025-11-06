@@ -23,7 +23,7 @@
    <div class="col-md-6">
       <div class="card">
          <div class="card-body">
-            <ul class="list-group" *ngIf="todoarr.length>0; else notodo">
+            <ul class="list-group" *ngIf="todoarr.length>=0; else notodo">
                <li class="list-group-item d-flex justify-content-between align-items-center"
                   *ngFor="let todo of todoarr">
                   <strong>{{todo.toitem}}</strong>
