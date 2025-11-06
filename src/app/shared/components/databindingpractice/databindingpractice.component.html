@@ -1,0 +1,23 @@
+
+
+
+<input
+(keyup)="onkeyupCb($event)"
+type="text" class="form-control mb-2"
+placeholder="type somthing here to check eventBinding">
+
+
+<input type="text" class="form-control mb-2" 
+#abc 
+placeholder="type something and click the btn to check eventBinding"
+>
+<button
+(click)="onbtnClickCb()"
+class="btn btn-primary btn-block ">
+add by using viewchild decorator
+</button>
+
+<button 
+class="btn btn-block btn-primary mb-4"
+(click)="addbyReff(abc)"
+>add by using refference</button>

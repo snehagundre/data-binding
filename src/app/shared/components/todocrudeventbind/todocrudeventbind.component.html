@@ -1,0 +1,48 @@
+<div class="row">
+   <div class="col-md-6">
+      <div class="card">
+         <div class="card-body">
+            <div class="form-group">
+               <label for="todoItem">ToDo Item</label>
+               <input type="text" class="form-control" #todoitem id="todoitem">
+            </div>
+            <button 
+            *ngIf="!isInEditMode"
+            (click)="onToDoAdd(todoitem)" class="btn btn-sm btn-block btn-outline-primary">
+               Add ToDo
+            </button>
+            <button
+            *ngIf="isInEditMode"
+            (click)="onTodoUpdate(todoitem)"
+            class="btn btn-sm btn-block btn-outline-primary">
+               Update ToDo
+            </button>
+         </div>
+      </div>
+   </div>
+   <div class="col-md-6">
+      <div class="card">
+         <div class="card-body">
+            <ul class="list-group" *ngIf="todoarr.length>0; else notodo">
+               <li class="list-group-item d-flex justify-content-between align-items-center"
+                  *ngFor="let todo of todoarr">
+                  <strong>{{todo.toitem}}</strong>
+                  <div>
+                     <button
+                     (click)="onTodoEdit(todo)"
+                      class="btn btn-sm btn-outline-primary mr-2"
+                     >
+                        Edit
+                     </button>
+                     <button (click)="onToDoRemove(todo.todoId)" class="btn btn-sm btn-outline-danger">
+                        Remove
+                     </button>
+                  </div>
+               </li>
+            </ul>
+         </div>
+      </div>
+   </div>
+   <ng-template #notodo>
+      <p class="alert alert-info">No todo is added yet</p>
+   </ng-template>
