@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Itodo } from '../../models/todo';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-todocrudeventbind',
@@ -10,7 +11,9 @@ export class TodocrudeventbindComponent implements OnInit {
   @ViewChild('todoitem') todoReff !: ElementRef;
   isInEditMode: boolean = false
   // formMode:"Add" |"Edit" = "Add"
-  constructor() {
+  constructor(
+    private _matsnackBar : MatSnackBar
+  ) {
   }
 
   ngOnInit(): void {
@@ -28,13 +31,20 @@ export class TodocrudeventbindComponent implements OnInit {
   ];
 
   onToDoAdd(todoitemControl: HTMLInputElement) {
-    let todoObj = {
+    if(this.todoarr.length>0){
+      let todoObj = {
       toitem: todoitemControl.value,
       todoId: this.Uuid()
     }
     this.todoarr.unshift(todoObj);
     //now new li will be created on ui
     todoitemControl.value =''
+    this._matsnackBar.open("new todoitem added successfully","close",{
+      duration:3000,
+      horizontalPosition:'left',
+      verticalPosition:'top'
+    })
+    }
   }
 
   onToDoRemove(todoId: string) {
@@ -42,6 +52,11 @@ export class TodocrudeventbindComponent implements OnInit {
     let get_index = this.todoarr.findIndex(todo => todoId === remove_id)
     console.log(get_index);
     this.todoarr.splice(get_index, 1)
+     this._matsnackBar.open(`todoitem with id: ${todoId} removed successfully`,"close",{
+      duration:3000,
+      horizontalPosition:'left',
+      verticalPosition:'top'
+    })
   }
   onTodoEdit(todoObj: Itodo) {
     //editmode on == true
@@ -53,6 +68,7 @@ export class TodocrudeventbindComponent implements OnInit {
 
     //patch data in form
     this.todoReff.nativeElement.value = todoObj.toitem;
+    
   }
   onTodoUpdate(todoitemControl: HTMLInputElement) {
     //update-id
@@ -71,6 +87,11 @@ export class TodocrudeventbindComponent implements OnInit {
       let get_index = this.todoarr.findIndex(todo => todo.todoId === UPdate_id);
       this.todoarr[get_index] = updated_obj;
       this.isInEditMode = false;
+      this._matsnackBar.open(`new ${updated_obj.toitem} updated successfully`,"close",{
+      duration:3000,
+      horizontalPosition:'left',
+      verticalPosition:'top'
+    })
     }
   }
 
