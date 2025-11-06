@@ -8,7 +8,7 @@
             </div>
             <button 
             *ngIf="!isInEditMode"
-            (click)="onToDoAdd(todoitem)" class="btn btn-sm btn-block btn-outline-primary">
+            (click)="onToDoAdd(todoitem)" class="btn btn-sm btn-block" mat-raised-button color="primary">
                Add ToDo
             </button>
             <button
@@ -30,11 +30,14 @@
                   <div>
                      <button
                      (click)="onTodoEdit(todo)"
-                      class="btn btn-sm btn-outline-primary mr-2"
+                      class="btn btn-sm mr-2"
+                      mat-raised-button color="primary"
                      >
                         Edit
                      </button>
-                     <button (click)="onToDoRemove(todo.todoId)" class="btn btn-sm btn-outline-danger">
+                     <button (click)="onToDoRemove(todo.todoId)"
+                      mat-raised-button color="warn"
+                      class="btn btn-sm">
                         Remove
                      </button>
                   </div>
