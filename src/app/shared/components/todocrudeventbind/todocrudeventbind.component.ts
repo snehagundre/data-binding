@@ -65,7 +65,6 @@ export class TodocrudeventbindComponent implements OnInit {
     //find the edit object
     let Edit_id = todoObj.todoId;
     let UPdate_id = localStorage.setItem("Edit_id", Edit_id)
-
     //patch data in form
     this.todoReff.nativeElement.value = todoObj.toitem;
     
@@ -76,7 +75,7 @@ export class TodocrudeventbindComponent implements OnInit {
     localStorage.removeItem("Edit_id");
 
     //update obj
-    if (UPdate_id) {
+    if(UPdate_id) {
       let updated_obj: Itodo = {
         toitem: todoitemControl.value,
         todoId: UPdate_id

@@ -9,6 +9,7 @@ import { StudentComponent } from './shared/components/student/student.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule
     
   ],
   providers: [],

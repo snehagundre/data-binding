@@ -1,4 +1,85 @@
-<div class="row">
-    <div class="col-6"></div>
-    <div class="col-6"></div>
+<hr>
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+            <div class="form-group">
+            <label for="fname">Fname</label>
+            <input class="form-control" type="text" id="fname" #fname>
+        </div>
+            <div class="form-group">
+            <label for="fname">Lname</label>
+            <input class="form-control" type="text" id="fname" #lname>
+        </div>
+            <div class="form-group">
+            <label for="fname">Email</label>
+            <input class="form-control" type="text" id="fname" #email>
+        </div>
+            <div class="form-group">
+            <label for="fname">Contact</label>
+            <input class="form-control" type="text" id="fname" #contact>
+        </div>
+        <button 
+        *ngIf="!isInEditMode"
+        (click)="onStdAdd()"
+        mat-raised-button color="primary" class="btn btn sm btn-block">Add Student
+       </button>
+        <button 
+        *ngIf="isInEditMode"
+        (click)="onStdUpdate()"
+        mat-raised-button color="primary" class="btn btn sm btn-block">Update Student
+       </button>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive text-center">
+                    <table class="table table-bordered" 
+                    *ngIf="studentsArr.length>0;else nostd">
+                        <thead>
+                            <tr>
+                                <th>Sr.No</th>
+                                <th>FullName</th>
+                                <th>Email</th>
+                                <th>Contact</th>
+                                <th>Edit</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let std of studentsArr let i = index">
+                                <td>{{i+1}}</td>
+                                <td class="text-capitalize">{{std.fname}} {{std.lname}}</td>
+                                <td>{{std.email}}</td>
+                                <td>{{std.contact}}</td>
+                                <td><button
+                                    (click)="onStdEdit(std)"
+                                    mat-icon-button color="primary">
+                                    <mat-icon aria-hidden="false" aria-label="Example home icon"
+                                            fontIcon="edit">
+                                    </mat-icon>
+                                    </button>
+                                </td>
+                                <td><button
+                                    (click)="onstdRemove(std)"
+                                     mat-icon-button color="primary">
+                                        <mat-icon aria-hidden="false" aria-label="Example home icon"
+                                            fontIcon="delete"
+                                        ></mat-icon>
+                                    </button> 
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<ng-template #nostd>
+<p class="alert alert-info">
+    No student ia addedd yet !!!
+</p>
+</ng-template>
